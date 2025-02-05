@@ -1,22 +1,32 @@
-import BuyButton from "./Buy_Button/BuyButton";
+import { FaStar } from "react-icons/fa";
 
-const CarsList = ({ show, search }) => {
+const CarsList = ({ onDeleteCars, search, onIsFavourite }) => {
   return (
     <>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         {search.map((car) => {
-          const { title, brand, year, price, isPremium } = car;
+          const { id, title, brand, year, price, isPremium } = car;
           return (
             <div className="" key={car.id}>
               <div className="border rounded-md p-5">
-                <p className="text-orange-500 text-xl font-semibold mb-2">
-                  {title}
-                </p>
+                <div className="mb-2 flex justify-between items-center ">
+                  <p className="text-orange-500 text-xl font-semibold">
+                    {title}
+                  </p>
+                  <button onClick={() => onIsFavourite(id)}>
+                    <FaStar color={isPremium ? "red" : "black"} />
+                  </button>
+                </div>
                 <p>Brand: {brand}</p>
                 <p>Year: {year}</p>
                 <p>Price: {price}</p>
                 <p>Premium: {isPremium ? "Yes" : "No"}</p>
-                <BuyButton>Buy Now</BuyButton>
+                <button
+                  onClick={() => onDeleteCars(id)}
+                  className="bg-orange-500 mt-3 w-full rounded-sm text-white font-semibold p-1"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           );

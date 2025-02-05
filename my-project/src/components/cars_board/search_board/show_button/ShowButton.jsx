@@ -13,7 +13,7 @@ const ShowButton = ({ show, setShow }) => {
       >
         <FaCheckCircle></FaCheckCircle>
       </button>{" "}
-      <p>Show Premiume only</p>
+      <p>Show Favourite only</p>
     </div>
   );
 };
