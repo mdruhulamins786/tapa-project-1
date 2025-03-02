@@ -4,16 +4,22 @@ import SearchBox from "./search_board/SearchBox";
 import CarsList from "./cars_list/CarsList";
 import cars from "../../../public/cars";
 
+import AddCars from "../../page/AddCars";
+import { addToLS, saveCartToLS } from "../../page/localStore";
+
 const CarsBoard = () => {
   const [quary, setQuary] = useState("");
   const [show, setShow] = useState(false);
   const [datas, setData] = useState(cars);
-  // const [newData, setNewData] = useState([]);
+  const [newData, setNewData] = useState([]);
 
-  const deleteCars = (id) => {
-    const dataNew = datas.filter((data) => data.id !== id);
-    setData(dataNew);
+  const addCars = (car) => {
+    setNewData([...newData, car]);
+
+    saveCartToLS(car.id);
   };
+
+  console.log(newData);
 
   const toggleFavourite = (id) => {
     setData(
@@ -35,10 +41,12 @@ const CarsBoard = () => {
     <div className="mx-auto px-4 py-2">
       <Header />
       <SearchBox show={show} setShow={setShow} setQuary={setQuary} />
+
+      <AddCars cars={newData} />
       <CarsList
         search={search()}
         onIsFavourite={toggleFavourite}
-        onDeleteCars={deleteCars}
+        onAddCars={addCars}
       />
     </div>
   );

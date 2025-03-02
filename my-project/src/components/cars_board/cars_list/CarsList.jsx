@@ -1,8 +1,9 @@
 import { FaStar } from "react-icons/fa";
 
-const CarsList = ({ onDeleteCars, search, onIsFavourite }) => {
+const CarsList = ({ onAddCars, search, onIsFavourite }) => {
   return (
     <>
+      <p className="text-2xl font-bold m-4 text-center">All Cars</p>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         {search.map((car) => {
           const { id, title, brand, year, price, isPremium } = car;
@@ -22,10 +23,10 @@ const CarsList = ({ onDeleteCars, search, onIsFavourite }) => {
                 <p>Price: {price}</p>
                 <p>Premium: {isPremium ? "Yes" : "No"}</p>
                 <button
-                  onClick={() => onDeleteCars(id)}
+                  onClick={() => onAddCars(car)}
                   className="bg-orange-500 mt-3 w-full rounded-sm text-white font-semibold p-1"
                 >
-                  Delete
+                  Shop
                 </button>
               </div>
             </div>
